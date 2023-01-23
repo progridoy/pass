@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Random Password Generator</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <script>
+        function generate() {
+  // Get form inputs
+  var length = document.getElementById("length").value;
+  var includeUppercase = document.getElementById("uppercase").checked;
+  var includeNumbers = document.getElementById("numbers").checked;
+  var includeSpecial = document.getElementById("special").checked;
+
+  // Define possible characters
+  var characters = "";
+  if (includeUppercase) {
+    characters += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  }
+  if (includeNumbers) {
+    characters += "0123456789";
+  }
+  if (includeSpecial) {
+    characters += "!@#$%^&*()";
+  }
+
+  // Generate password
+  var password = "";
+  for (var i = 0; i < length; i++) {
+    password += characters.charAt(Math.floor(Math.random() * characters.length));
+  }
+
+  // Output password
+  document.getElementById("password").value = password;
+}
+
+    </script>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  text-align: center;
+}
+
+#container {
+  margin: 0 auto;
+  width: 50%;
+}
+
+#password {
+  width: 100%;
+  height: 50px;
+  margin-top: 10px;
+  font-size: 24px;
+}
+
+    </style>
+  <div id="container">
+    <h1>Random Password Generator</h1>
+    <form>
+      <label for="length">Password Length:</label>
+      <input type="number" id="length" min="8" max="128" value="8">
+      <br>
+      <input type="checkbox" id="uppercase">
+      <label for="uppercase">Include Uppercase Characters</label>
+      <br>
+      <input type="checkbox" id="numbers">
+      <label for="numbers">Include Numbers</label>
+      <br>
+      <input type="checkbox" id="special">
+      <label for="special">Include Special Characters</label>
+      <br>
+      <button type="button" onclick="generate()">Generate Password</button>
+      <br>
+      <br>
+      <textarea id="password" readonly></textarea>
+    </form>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
